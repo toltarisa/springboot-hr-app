@@ -1,0 +1,132 @@
+<div class="form-wrapper text-center">
+  <form
+    #f="ngForm"
+    class="form-signin"
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <img
+      class="mb-4"
+      src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg"
+      alt=""
+      width="72"
+      height="72"
+    />
+    <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+
+    <label for="inputName" class="sr-only">Name</label>
+    <input
+      type="text"
+      id="inputName"
+      class="form-control"
+      placeholder="Name"
+      formControlName="name"
+      required
+      autofocus
+    />
+    <span
+      class="error"
+      *ngIf="
+        (name.touched || name.dirty) && name.invalid && name.errors.required
+      "
+      >Name is required</span
+    >
+
+    <label for="inputSurname" class="sr-only">Surname</label>
+    <input
+      type="text"
+      id="inputSurname"
+      class="form-control"
+      placeholder="Surname"
+      formControlName="surname"
+      required
+      autofocus
+    />
+    <span
+      class="error"
+      *ngIf="
+        (surname.touched || surname.dirty) &&
+        surname.invalid &&
+        surname.errors.required
+      "
+      >Surname is required</span
+    >
+
+    <label for="inputUsername" class="sr-only">Username</label>
+    <input
+      type="text"
+      id="inputUsername"
+      class="form-control"
+      placeholder="Username"
+      formControlName="username"
+      required
+      autofocus
+    />
+    <span
+      class="error"
+      *ngIf="
+        (username.touched || username.dirty) &&
+        username.invalid &&
+        username.errors.required
+      "
+      >Username is required</span
+    >
+
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input
+      type="text"
+      id="inputEmail"
+      class="form-control"
+      placeholder="Email"
+      formControlName="email"
+      required
+      autofocus
+    />
+    <span
+      class="error"
+      *ngIf="
+        (email.touched || email.dirty) && email.invalid && email.errors.required
+      "
+      >Email is required</span
+    >
+
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input
+      type="password"
+      id="inputPassword"
+      class="form-control"
+      placeholder="Password"
+      formControlName="password"
+      required
+    />
+    <span
+      class="error"
+      *ngIf="
+        (password.touched || password.dirty) &&
+        password.invalid &&
+        password.errors.required
+      "
+      >Password is required</span
+    >
+    <label for="inputPassword" class="sr-only">Role</label>
+    <select
+      class="custom-select mb-3"
+      (change)="changeCity($event)"
+      formControlName="role"
+    >
+      <option value="">Choose your Role</option>
+      <option *ngFor="let role of roles" [ngValue]="role">{{ role }}</option>
+    </select>
+    <span
+      class="error"
+      *ngIf="
+        (role.touched || role.dirty) && role.invalid && role.errors.required
+      "
+      >Role is required</span
+    >
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+      Register
+    </button>
+  </form>
+</div>

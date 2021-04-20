@@ -1,0 +1,62 @@
+<div class="form-wrapper text-center">
+  <form
+    #f="ngForm"
+    class="form-signin"
+    [formGroup]="loginForm"
+    (ngSubmit)="f.form.valid && onSubmit()"
+  >
+    <img
+      class="mb-4"
+      src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg"
+      alt=""
+      width="72"
+      height="72"
+    />
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input
+      type="text"
+      id="inputUsername"
+      class="form-control"
+      placeholder="User name"
+      formControlName="username"
+      required
+      autofocus
+    />
+    <span
+      class="error"
+      *ngIf="
+        (username.touched || username.dirty) &&
+        username.invalid &&
+        username.errors.required
+      "
+      >Username is required</span
+    >
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input
+      type="password"
+      id="inputPassword"
+      class="form-control"
+      placeholder="Password"
+      formControlName="password"
+      required
+    />
+    <span
+      class="error"
+      *ngIf="
+        (password.touched || password.dirty) &&
+        password.invalid &&
+        password.errors.required
+      "
+      >Password is required</span
+    >
+
+    <button
+      [disabled]="loginForm.invalid"
+      class="btn btn-lg btn-primary btn-block"
+      type="submit"
+    >
+      Sign in
+    </button>
+  </form>
+</div>

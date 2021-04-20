@@ -1,0 +1,9 @@
+.modal.show {
+  display: block;
+  opacity: 1;
+
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.container {
+  font-family: "Lato", sans-serif;
+}

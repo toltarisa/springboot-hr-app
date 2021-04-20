@@ -1,0 +1,107 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h1 *ngIf="jobDetail" class="display-4">{{ jobDetail.title }}</h1>
+        <span
+          style="
+            color: white;
+            padding: 6px;
+            letter-spacing: 1px;
+            font-weight: 300;
+          "
+          *ngIf="jobDetail"
+          class="badge rounded-pill bg-primary"
+        >
+          Hiring {{ jobDetail.numberOfPeople }} Person</span
+        >
+        <span
+          style="
+            color: white;
+            padding: 6px;
+            letter-spacing: 1px;
+            font-weight: 300;
+          "
+          *ngIf="jobDetail"
+          class="badge rounded-pill bg-success mx-2"
+        >
+          Last Application Date
+          {{ jobDetail.lastApplicationDate | date: "dd/MM/yyyy" }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="mt-3 p-2">
+    <h3 class="text-bold">Job Details</h3>
+    <p *ngIf="jobDetail">{{ jobDetail.description }}</p>
+  </div>
+  <div *ngIf="role === 'ROLE_APPLICANT'" class="row mt-5">
+    <div class="col-md-6 col-lg-6 col-12">
+      <h2 class="my-3">Apply to this job!</h2>
+      <form class="my-3" *ngIf="role === 'ROLE_APPLICANT'">
+        <div class="form-group">
+          <label for="exampleInputName">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputName"
+            placeholder="Name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPhone">Phone</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputPhone"
+            placeholder="Phone number"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputAddress">Address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputAddress"
+            placeholder="Address"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputThoughts">Thoughts</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputThoughts"
+            placeholder="Thoughts"
+          />
+        </div>
+        <div class="form-group custom-file mb-3">
+          <input type="file" class="custom-file-input" id="customFile" />
+          <label class="custom-file-label" for="customFile"
+            >Upload your Resume</label
+          >
+        </div>
+        <button
+          (click)="applyToJob($event, jobDetail.id)"
+          type="submit"
+          class="btn btn-primary"
+        >
+          Apply
+        </button>
+      </form>
+    </div>
+    <div class="col-md-6 col-lg-6 col-12"></div>
+  </div>
+</div>
