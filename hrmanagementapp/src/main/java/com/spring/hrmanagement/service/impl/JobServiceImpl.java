@@ -58,9 +58,7 @@ public class JobServiceImpl implements JobService {
         job.setDescription(description);
         job.setNumberOfPeople(numberOfPeople);
         job.setLastApplicationDate(new Timestamp(lastApplicantDate.getTime()));
-
-        User user = userService.findByUsername(username);
-        job.setUser(user);
+        job.setPublisherUsername(username);
 
         saveJob(job);
 
@@ -92,7 +90,7 @@ public class JobServiceImpl implements JobService {
         try {
             jobRepository.save(job);
         } catch(Exception ex) {
-            throw new DbOperationException("Unable to save user to db");
+            throw new DbOperationException("Unable to save job to db");
         }
     }
 

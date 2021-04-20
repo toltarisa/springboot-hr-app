@@ -7,7 +7,6 @@ import com.spring.hrmanagement.domain.dto.SignupRequest;
 import com.spring.hrmanagement.security.jwt.JwtUtils;
 import com.spring.hrmanagement.security.services.UserDetailsImpl;
 import com.spring.hrmanagement.service.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,15 +30,15 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtils jwtUtils;
 
-    public AuthController (UserService userService, AuthenticationManager authenticationManager,
-                           JwtUtils jwtUtils) {
+    public AuthController(UserService userService, AuthenticationManager authenticationManager,
+                          JwtUtils jwtUtils) {
 
         this.userService = userService;
         this.authenticationManager = authenticationManager;
         this.jwtUtils = jwtUtils;
     }
 
-    @PostMapping(value = "/signin")
+    @PostMapping("/signin")
     public ResponseEntity<?> authenticate(@RequestBody @Valid LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -65,7 +64,7 @@ public class AuthController {
                 ));
     }
 
-    @PostMapping(value = "/register")
+    @PostMapping("/register")
     public ResponseEntity<?> signup(@Valid @RequestBody SignupRequest request) {
 
         String username = request.getUsername();
@@ -74,18 +73,17 @@ public class AuthController {
         Boolean usernameExists = userService.existsByUsername(username);
         Boolean emailExists = userService.existsByEmail(email);
 
-        if(usernameExists)
+        if (usernameExists)
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Username already exists"));
 
-        if(emailExists)
+        if (emailExists)
             return ResponseEntity.badRequest()
                     .body(new MessageResponse("Email already exists"));
 
         Integer userId = userService.saveUser(request);
 
-        return new ResponseEntity<>("User with id = " + userId + " registered succesfully", HttpStatus.CREATED);
-
+        return ResponseEntity.ok(new MessageResponse("User created successfully"));
     }
 }

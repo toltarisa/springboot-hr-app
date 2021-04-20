@@ -1,6 +1,7 @@
 package com.spring.hrmanagement.controller;
 
 import com.spring.hrmanagement.domain.dto.JobListingDto;
+import com.spring.hrmanagement.domain.dto.MessageResponse;
 import com.spring.hrmanagement.service.JobService;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -16,6 +17,7 @@ import java.security.Principal;
 @RestController
 @RequestMapping("/api/jobs")
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class JobListingController {
 
     JobService jobService;
@@ -26,7 +28,7 @@ public class JobListingController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_MANAGER')")
-    public ResponseEntity<?> saveJob(@Valid @RequestBody JobListingDto jobListingDto, Principal principal) {
+    public ResponseEntity<MessageResponse> saveJob(@Valid @RequestBody JobListingDto jobListingDto, Principal principal) {
 
         String username = principal.getName();
         Integer jobListingId = jobService.createJob(jobListingDto, username);
@@ -34,7 +36,8 @@ public class JobListingController {
         if(jobListingId == null)
             return ResponseEntity.noContent().build();
 
-        return new ResponseEntity<>("Job with id = " + jobListingId + " created", HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new MessageResponse("Job with id = " + jobListingId + " created"));
     }
 
     @GetMapping
@@ -56,13 +59,11 @@ public class JobListingController {
     }
 
     @DeleteMapping(value = "/{jobListingId}")
-    public ResponseEntity<?> deleteJob(@Positive @PathVariable Integer jobListingId) {
+    public ResponseEntity<MessageResponse> deleteJob(@Positive @PathVariable Integer jobListingId) {
 
         jobService.deleteJobListing(jobListingId);
 
-        return new ResponseEntity<>(
-                "Job with id = " + jobListingId + " removed successfully",
-                HttpStatus.OK
-        );
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new MessageResponse("Job with id = " + jobListingId + " deleted successfully"));
     }
 }

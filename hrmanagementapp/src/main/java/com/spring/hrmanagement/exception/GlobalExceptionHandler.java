@@ -1,11 +1,9 @@
 package com.spring.hrmanagement.exception;
 
-import com.spring.hrmanagement.exception.payload.ApiException;
-import com.spring.hrmanagement.exception.payload.CustomFieldError;
-import com.spring.hrmanagement.exception.payload.DbException;
-import com.spring.hrmanagement.exception.payload.NotFoundError;
+import com.spring.hrmanagement.exception.payload.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -81,5 +79,18 @@ public class GlobalExceptionHandler {
                                                                               WebRequest request) {
         NotFoundError errorDetails = new NotFoundError(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public final ResponseEntity<Object> handleAuthenticationException(AuthenticationException ex) {
+        HttpStatus internalServerError = HttpStatus.INTERNAL_SERVER_ERROR;
+
+        AuthenticationExceptionPayload exception = new AuthenticationExceptionPayload(
+                ex.getMessage(),
+                internalServerError,
+                ZonedDateTime.now()
+        );
+
+        return new ResponseEntity<>(exception, internalServerError);
     }
 }

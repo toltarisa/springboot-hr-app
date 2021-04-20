@@ -20,7 +20,7 @@ import java.util.Set;
 public class Job {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
 
     @NotBlank
@@ -38,9 +38,8 @@ public class Job {
     @Column(name = "last_application_date")
     Timestamp lastApplicationDate;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "publisher_id", nullable = false)
-    private User user;
+    @Column(name = "publisher_username")
+    String publisherUsername;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "job")
     private Set<Application> applications;
