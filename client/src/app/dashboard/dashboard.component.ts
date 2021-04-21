@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   modalState;
   jobs: any = [];
   role;
+  pageTitle;
 
   constructor(
     private fb: FormBuilder,
@@ -29,10 +30,20 @@ export class DashboardComponent implements OnInit {
       people: ["", Validators.required],
       lastdate: [""],
     });
+    if (!this.tokenStorageService.isLoggedIn()) {
+      this.router.navigateByUrl("/login");
+      this.toastr.warning("You're not logged in !");
+    }
   }
 
   ngOnInit() {
-    this.role = this.tokenStorageService.getUser().roles[0];
+    if (this.tokenStorageService.isLoggedIn()) {
+      this.role = this.tokenStorageService.getUser().roles[0];
+    }
+
+    if (this.role === "ROLE_APPLICANT") this.pageTitle = "Job Listing";
+    else this.pageTitle = "HR Manager";
+
     this.getJobs();
   }
 
@@ -109,5 +120,11 @@ export class DashboardComponent implements OnInit {
         this.showError(err.error.message);
       }
     );
+  }
+
+  logout() {
+    this.tokenStorageService.signOut();
+    this.router.navigateByUrl("/login");
+    this.showSuccess("Logged Out Succesfully");
   }
 }

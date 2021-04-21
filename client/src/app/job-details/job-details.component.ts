@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { JobService } from "../_services/job.service";
 import { TokenStorageService } from "../_services/token-storage.service";
 import { ToastrService } from "ngx-toastr";
@@ -14,8 +14,14 @@ export class JobDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private jobService: JobService,
     private tokenStorageService: TokenStorageService,
-    private toastr: ToastrService
-  ) {}
+    private toastr: ToastrService,
+    private router: Router
+  ) {
+    if (!this.tokenStorageService.isLoggedIn()) {
+      this.router.navigateByUrl("/login");
+      this.toastr.warning("You're not logged in !");
+    }
+  }
 
   jobDetail: any;
   role: string;

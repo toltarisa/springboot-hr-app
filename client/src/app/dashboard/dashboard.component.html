@@ -5,7 +5,7 @@
     <div>
       <a class="navbar-brand p-2">
         <img src="../../assets/suitcase.png" width="30" height="30" alt="" />
-        <span style="font-size: 16px" class="ml-2 mt-4">HR Manager</span>
+        <span style="font-size: 16px" class="ml-2 mt-4">{{ pageTitle }}</span>
       </a>
     </div>
     <div>
@@ -13,7 +13,7 @@
         <img src="../../assets/profile.png" width="30" height="30" alt="" />
         <span class="ml-2 mt-4" style="font-size: 16px">İsa Toltar</span>
       </a>
-      <a class="btn btn-danger btn-small"> Logout</a>
+      <a (click)="logout()" class="btn btn-danger btn-small"> Logout</a>
     </div>
   </nav>
   <a
