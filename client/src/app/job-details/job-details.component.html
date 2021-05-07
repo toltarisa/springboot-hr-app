@@ -40,7 +40,12 @@
   <div *ngIf="role === 'ROLE_APPLICANT'" class="row mt-5">
     <div class="col-md-6 col-lg-6 col-12">
       <h2 class="my-3">Apply to this job!</h2>
-      <form class="my-3" *ngIf="role === 'ROLE_APPLICANT'">
+      <form
+        [formGroup]="applicationForm"
+        (submit)="applyToJob($event, jobDetail.id)"
+        class="my-3"
+        *ngIf="role === 'ROLE_APPLICANT'"
+      >
         <div class="form-group">
           <label for="exampleInputName">Name</label>
           <input
@@ -48,6 +53,7 @@
             class="form-control"
             id="exampleInputName"
             placeholder="Name"
+            formControlName="name"
           />
         </div>
         <div class="form-group">
@@ -58,6 +64,7 @@
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="Enter email"
+            formControlName="email"
           />
         </div>
         <div class="form-group">
@@ -67,6 +74,7 @@
             class="form-control"
             id="exampleInputPhone"
             placeholder="Phone number"
+            formControlName="phone"
           />
         </div>
         <div class="form-group">
@@ -76,6 +84,7 @@
             class="form-control"
             id="exampleInputAddress"
             placeholder="Address"
+            formControlName="address"
           />
         </div>
         <div class="form-group">
@@ -85,21 +94,22 @@
             class="form-control"
             id="exampleInputThoughts"
             placeholder="Thoughts"
+            formControlName="thoughts"
           />
         </div>
         <div class="form-group custom-file mb-3">
-          <input type="file" class="custom-file-input" id="customFile" />
+          <input
+            (change)="onFileChange($event)"
+            type="file"
+            class="custom-file-input"
+            id="customFile"
+            value="{{ file.fileName }}"
+          />
           <label class="custom-file-label" for="customFile"
             >Upload your Resume</label
           >
         </div>
-        <button
-          (click)="applyToJob($event, jobDetail.id)"
-          type="submit"
-          class="btn btn-primary"
-        >
-          Apply
-        </button>
+        <button type="submit" class="btn btn-primary">Apply</button>
       </form>
     </div>
     <div class="col-md-6 col-lg-6 col-12"></div>

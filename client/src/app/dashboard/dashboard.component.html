@@ -39,6 +39,12 @@
             class="btn btn-success mx-2"
             >Details</a
           >
+          <a
+            *ngIf="role === 'ROLE_MANAGER'"
+            [routerLink]="['/jobs', job.id, 'applications']"
+            class="btn btn-warning mx-2"
+            >See Applications</a
+          >
           <button
             *ngIf="role === 'ROLE_MANAGER'"
             (click)="deleteJob($event, job.id)"

@@ -1,0 +1,27 @@
+<div class="container pt-4">
+  <h2>Job Details</h2>
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h5 *ngIf="application" class="card-title">{{ application.name }}</h5>
+      <h6 *ngIf="application" class="card-subtitle mb-2 text-muted">
+        {{ application.email }}
+      </h6>
+      <h6 *ngIf="application" class="card-subtitle mb-2 text-muted">
+        {{ application.phone }}
+      </h6>
+      <p *ngIf="application" class="card-text">
+        {{ application.address }}
+      </p>
+      <p *ngIf="application" class="card-text">
+        {{ application.thoughts }}
+      </p>
+      <a
+        download
+        *ngIf="application"
+        href="{{ application.fileUrl }}"
+        class="card-link"
+        >Download Resume</a
+      >
+    </div>
+  </div>
+</div>

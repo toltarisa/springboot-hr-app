@@ -1,0 +1,39 @@
+<div class="container">
+  <nav
+    class="navbar navbar-light bg-light d-flex justify-content-between align-items-center mb-2"
+  >
+    <div>
+      <a class="navbar-brand p-2">
+        <img src="../../assets/suitcase.png" width="30" height="30" alt="" />
+        <span style="font-size: 16px" class="ml-2 mt-4">Applications</span>
+      </a>
+    </div>
+    <div>
+      <a class="navbar-brand p-2">
+        <img src="../../assets/profile.png" width="30" height="30" alt="" />
+        <span class="ml-2 mt-4" style="font-size: 16px">İsa Toltar</span>
+      </a>
+      <a (click)="logout()" class="btn btn-danger btn-small"> Logout</a>
+    </div>
+  </nav>
+
+  <div class="jobs-group py-4">
+    <div *ngFor="let application of applications" class="card my-3 p-3">
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <div>
+          <span class="text-success font-weight-bold">
+            {{ application.name }}</span
+          >
+        </div>
+
+        <div>
+          <a
+            [routerLink]="['/jobs', jobId, 'applications', application.id, 'details']"
+            class="btn btn-success mx-2"
+            >Details</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
