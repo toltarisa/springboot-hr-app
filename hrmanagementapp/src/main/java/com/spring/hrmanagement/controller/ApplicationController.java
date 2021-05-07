@@ -1,5 +1,6 @@
 package com.spring.hrmanagement.controller;
 
+import com.spring.hrmanagement.domain.dto.MessageResponse;
 import com.spring.hrmanagement.service.ApplicationService;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -12,6 +13,7 @@ import javax.validation.constraints.Positive;
 
 @RestController
 @RequestMapping("/api/jobs")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ApplicationController {
 
@@ -28,10 +30,8 @@ public class ApplicationController {
 
         Integer applicationId = applicationService.createApplication(request, jobId, file);
 
-        return new ResponseEntity<>(
-                "Application with id = " + applicationId + " created successfully",
-                HttpStatus.CREATED
-        );
+        return  ResponseEntity.status(HttpStatus.CREATED)
+                .body(new MessageResponse("Application with id = " + applicationId + " created successfully"));
     }
 
     @GetMapping(value = "/{jobId}/applications")

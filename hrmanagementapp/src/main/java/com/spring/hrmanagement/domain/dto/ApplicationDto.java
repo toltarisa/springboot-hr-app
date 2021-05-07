@@ -12,6 +12,8 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class ApplicationDto {
 
+    Integer id;
+
     @NotBlank
     @Size(max = 100)
     String name;

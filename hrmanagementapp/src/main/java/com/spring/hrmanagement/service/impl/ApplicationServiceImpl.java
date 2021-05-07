@@ -95,6 +95,8 @@ public class ApplicationServiceImpl implements ApplicationService {
     private ApplicationDto entityToDto(Application application) {
 
         ApplicationDto dto = new ApplicationDto();
+
+        dto.setId(application.getId());
         dto.setName(application.getName());
         dto.setEmail(application.getEmail());
         dto.setAddress(application.getAddress());
