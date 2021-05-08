@@ -2,12 +2,13 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { TokenStorageService } from "../_services/token-storage.service";
+import { environment } from "../../environments/environment.dev";
 
 @Injectable({
   providedIn: "root",
 })
 export class ApplicationService {
-  private BASE_API_URL = "http://localhost:8080/api/jobs";
+  private BASE_API_URL = `${environment.apiUrl}/jobs`;
   private httpOptions = {
     headers: new HttpHeaders({
       Authorization: "Bearer " + this.tokenStorage.getToken(),

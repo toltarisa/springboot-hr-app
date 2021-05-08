@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { environment } from "../../environments/environment.dev";
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
-  private AUTH_API = "http://localhost:8080/api/auth/";
+  private AUTH_API = `${environment.apiUrl}/auth/`;
   private httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
   };
