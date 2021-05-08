@@ -2,6 +2,7 @@ package com.spring.hrmanagement.domain.repository;
 
 import com.spring.hrmanagement.domain.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 

@@ -18,11 +18,8 @@ import javax.validation.constraints.NotNull;
 @ConfigurationProperties(prefix = "s3")
 public class AwsS3Config {
 
-    @NotNull
     private String accessKeyId;
-    @NotNull
     private String secretKey;
-    @NotNull
     private String region;
 
     /*final BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(accessKeyId, secretKey);

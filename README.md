@@ -16,6 +16,8 @@
 
   - Add an authentication mechanism and then only hr manager should manage job
     listings.
+  - Login functionality for different roles
+  - Signup to system
 
 - Job Application Page
 
@@ -57,6 +59,46 @@
 - Angular 11
 - Bootstrap
 
-## Tests
-
 ## Screenshots
+
+<br/>
+
+### Register
+
+<img src="./screenshots/register.png" width="900" height="500">
+
+### Login
+
+<img src="./screenshots/login.png" width="900" height="500">
+
+### HR Manager Dashboard
+
+<img src="./screenshots/hr_dashboard.png" width="900" height="500">
+
+### HR Create Job Form
+
+<img src="./screenshots/hr_create_job.png" width="900" height="500">
+
+### HR Job Details
+
+<img src="./screenshots/hr_job_detail.png" width="900" height="500">
+
+### HR Job Applications
+
+<img src="./screenshots/hr_job_application.png" width="900" height="500">
+
+### HR Job Application Details
+
+<img src="./screenshots/hr_job_application_detail.png" width="900" height="500">
+
+### Applicant Dashboard
+
+<img src="./screenshots/applicant_dashboard.png" width="900" height="500">
+
+### Applicant Job Details
+
+<img src="./screenshots/applicant_job_details.png" width="900" height="500">
+
+### Applicant Apply Job
+
+<img src="./screenshots/applicant_job_application.png" width="900" height="500">
