@@ -2,13 +2,11 @@ package com.spring.hrmanagement.service.impl;
 
 import com.spring.hrmanagement.domain.dto.JobListingDto;
 import com.spring.hrmanagement.domain.model.Job;
-import com.spring.hrmanagement.domain.model.User;
 import com.spring.hrmanagement.domain.repository.JobRepository;
 import com.spring.hrmanagement.exception.ApiRequestException;
 import com.spring.hrmanagement.exception.DbOperationException;
 import com.spring.hrmanagement.exception.ResourceNotFoundException;
 import com.spring.hrmanagement.service.JobService;
-import com.spring.hrmanagement.service.UserService;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
@@ -22,15 +20,10 @@ import java.util.stream.Collectors;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class JobServiceImpl implements JobService {
 
-    JobRepository jobRepository;
+    final JobRepository jobRepository;
 
-    UserService userService;
-
-    public JobServiceImpl (JobRepository jobRepository, UserService userService) {
-
+    public JobServiceImpl (JobRepository jobRepository) {
         this.jobRepository = jobRepository;
-
-        this.userService = userService;
     }
 
     /**
@@ -41,7 +34,7 @@ public class JobServiceImpl implements JobService {
      * @return          Integer
      */
     @Override
-    public Integer createJob(JobListingDto dto, String username) {
+    public Job createJob(JobListingDto dto, String username) {
 
         String title = dto.getTitle();
         String description = dto.getDescription();
@@ -62,7 +55,7 @@ public class JobServiceImpl implements JobService {
 
         saveJob(job);
 
-        return job.getId();
+        return job;
     }
 
     /**

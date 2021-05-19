@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface JobService {
 
-    Integer createJob(JobListingDto dto, String username);
+    Job createJob(JobListingDto dto, String username);
 
     List<JobListingDto> getAllJobs();
 

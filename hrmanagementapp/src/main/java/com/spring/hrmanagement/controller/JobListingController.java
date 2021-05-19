@@ -31,7 +31,7 @@ public class JobListingController {
     public ResponseEntity<MessageResponse> saveJob(@Valid @RequestBody JobListingDto jobListingDto, Principal principal) {
 
         String username = principal.getName();
-        Integer jobListingId = jobService.createJob(jobListingDto, username);
+        Integer jobListingId = jobService.createJob(jobListingDto, username).getId();
 
         if(jobListingId == null)
             return ResponseEntity.noContent().build();

@@ -15,7 +15,6 @@ import java.util.Set;
 @NoArgsConstructor
 public class SignupRequest {
 
-
     @NotBlank
     @Size(max = 30)
     String name;

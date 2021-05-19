@@ -82,7 +82,7 @@ public class AuthController {
             return ResponseEntity.badRequest()
                     .body(new MessageResponse("Email already exists"));
 
-        Integer userId = userService.saveUser(request);
+        Integer userId = userService.saveUser(request).getId();
 
         return ResponseEntity.ok(new MessageResponse("User created successfully"));
     }

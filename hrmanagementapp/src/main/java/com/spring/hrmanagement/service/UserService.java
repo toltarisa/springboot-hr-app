@@ -11,5 +11,5 @@ public interface UserService {
 
     Boolean existsByEmail(String email);
 
-    Integer saveUser(SignupRequest request);
+    User saveUser(SignupRequest request);
 }

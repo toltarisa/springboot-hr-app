@@ -14,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -62,7 +61,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer saveUser(SignupRequest request) {
+    public User saveUser(SignupRequest request) {
 
         String name = request.getName();
         String surname = request.getSurname();
@@ -80,10 +79,11 @@ public class UserServiceImpl implements UserService {
         try {
             userRepository.save(user);
         } catch(Exception e) {
+            logger.error(e.getMessage(), e);
             throw new DbOperationException("Error occured when trying to save user to db!");
         }
 
-        return user.getId();
+        return user;
     }
 
     private Set<Role> getRoles(Set<String> strRoles) {
