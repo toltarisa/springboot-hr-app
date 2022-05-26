@@ -2,7 +2,7 @@
 
 > Simple HR Management app built with Spring Boot & MySQL & Angular
 
-## Objectives
+## :scroll: Objectives
 
 - Job Listing Management Module
 
@@ -40,14 +40,14 @@
 - UI
   - User friendly UI using Bootstrap.
 
-## Installation
+## :wrench: Installation
 
 1. Clone this repository to your local machine.
 2. cd into client folder and execute `npm install`
 3. modify application.properties file under `/src/main/resources`
 4. Start both client and server apps
 
-## Tech Stack
+## 🔨 Tech Stack
 
 - Java 11
 - Spring Boot
